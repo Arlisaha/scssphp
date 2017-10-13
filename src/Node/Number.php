@@ -35,7 +35,7 @@ class Number extends Node implements \ArrayAccess
     
     static public $decSeparator = '.';
     
-    static public $hunSeparator = '';
+    static public $thouSeparator = '';
 
     /**
      * @see http://www.w3.org/TR/2012/WD-css3-values-20120308/
