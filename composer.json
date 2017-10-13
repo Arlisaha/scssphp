@@ -1,7 +1,7 @@
 {
-    "name": "leafo/scssphp",
+    "name": "arlisaha/scssphp",
     "type": "library",
-    "description": "scssphp is a compiler for SCSS written in PHP.",
+    "description": "Fork from Leafo SCSS PHP compiler (see homepage).",
     "keywords": ["css", "stylesheet", "scss", "sass", "less"],
     "homepage": "http://leafo.github.io/scssphp/",
     "license": [
