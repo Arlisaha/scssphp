@@ -32,6 +32,10 @@ class Number extends Node implements \ArrayAccess
      * @var integer
      */
     static public $precision = 5;
+    
+    static public $decSeparator = '.';
+    
+    static public $hunSeparator = '';
 
     /**
      * @see http://www.w3.org/TR/2012/WD-css3-values-20120308/
@@ -265,7 +269,7 @@ class Number extends Node implements \ArrayAccess
      */
     public function output(Compiler $compiler = null)
     {
-        $dimension = round($this->dimension, static::$precision);
+        $dimension = $this->round($this->dimension);;
 
         $units = array_filter($this->units, function ($unitSize) {
             return $unitSize;
@@ -277,7 +281,7 @@ class Number extends Node implements \ArrayAccess
 
             $this->normalizeUnits($dimension, $units, 'in');
 
-            $dimension = round($dimension, static::$precision);
+            $dimension = $this->round($dimension);
             $units     = array_filter($units, function ($unitSize) {
                 return $unitSize;
             });
@@ -290,10 +294,31 @@ class Number extends Node implements \ArrayAccess
         }
 
         reset($units);
-        $unit = key($units);
+        list($unit, ) = each($units);
 
         return (string) $dimension . $unit;
     }
+	
+	/**
+	 * Round number with proper separators
+	 *
+	 * @param $dimension
+	 *
+	 * @return string
+	 */
+	protected function round($dimension)
+	{
+		return rtrim(
+			rtrim(
+				number_format(
+					round($dimension, static::$precision),
+					static::$precision,
+					static::$decSeparator,
+					static::$thouSeparator
+				),
+				'0'),
+			'.');
+	}
 
     /**
      * {@inheritdoc}
