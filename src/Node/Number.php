@@ -294,7 +294,7 @@ class Number extends Node implements \ArrayAccess
         }
 
         reset($units);
-        list($unit, ) = each($units);
+        $unit = key($units);
 
         return (string) $dimension . $unit;
     }
